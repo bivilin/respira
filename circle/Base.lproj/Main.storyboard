@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="respira" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vu-sy-bVb">
+                                <rect key="frame" x="57" y="303" width="300" height="300"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Ulm-ni-KdY"/>
+                                    <constraint firstAttribute="width" secondItem="3vu-sy-bVb" secondAttribute="height" id="neX-2T-1GW"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-KV-HuM">
+                                <rect key="frame" x="192" y="438" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.75294117647058822" green="0.81960784313725488" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xaO-KV-HuM" secondAttribute="height" id="2Nu-rd-hvw"/>
+                                    <constraint firstAttribute="width" constant="30" id="bSL-In-OED"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number of seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAk-9y-uCS">
+                                <rect key="frame" x="126" y="443" width="162.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressione para inspirar  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8y-n3-bUN">
+                                <rect key="frame" x="109.5" y="126" width="195.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="17"/>
+                                <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Solte para expirar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypB-Ov-Dha">
+                                <rect key="frame" x="133" y="163" width="173" height="21"/>
+                                <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="17"/>
+                                <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFc-QX-Et3">
+                                <rect key="frame" x="170" y="664.5" width="74" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kyw-6F-CPJ">
+                                <rect key="frame" x="180" y="664.5" width="54" height="30"/>
+                                <state key="normal" title="finalizar">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rMy-NV-RgD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90588235294117647" green="0.95686274509803915" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="YFc-QX-Et3" firstAttribute="top" secondItem="Kyw-6F-CPJ" secondAttribute="top" id="0dY-xM-aML"/>
+                            <constraint firstItem="3vu-sy-bVb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="O60-XX-NVl"/>
+                            <constraint firstItem="3vu-sy-bVb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PgZ-cM-Y47"/>
+                            <constraint firstItem="ypB-Ov-Dha" firstAttribute="centerX" secondItem="E8y-n3-bUN" secondAttribute="centerX" id="PhF-VU-Ghb"/>
+                            <constraint firstItem="YFc-QX-Et3" firstAttribute="trailing" secondItem="Kyw-6F-CPJ" secondAttribute="trailing" constant="10" id="QNL-8s-EtP"/>
+                            <constraint firstItem="3vu-sy-bVb" firstAttribute="width" secondItem="3vu-sy-bVb" secondAttribute="height" id="QgW-bY-rrE"/>
+                            <constraint firstItem="E8y-n3-bUN" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.3" id="U8J-XM-em5"/>
+                            <constraint firstItem="YFc-QX-Et3" firstAttribute="centerY" secondItem="Kyw-6F-CPJ" secondAttribute="centerY" id="W2L-5U-tGf"/>
+                            <constraint firstItem="ypB-Ov-Dha" firstAttribute="top" secondItem="E8y-n3-bUN" secondAttribute="bottom" constant="16" id="awb-AO-iT6"/>
+                            <constraint firstItem="CAk-9y-uCS" firstAttribute="centerX" secondItem="xaO-KV-HuM" secondAttribute="centerX" id="bWC-SY-H1R"/>
+                            <constraint firstItem="Kyw-6F-CPJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cWd-Yd-ZRb"/>
+                            <constraint firstItem="Kyw-6F-CPJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.5" id="h1A-Om-sgi"/>
+                            <constraint firstItem="CAk-9y-uCS" firstAttribute="centerY" secondItem="xaO-KV-HuM" secondAttribute="centerY" id="o0X-gK-U5Z"/>
+                            <constraint firstItem="xaO-KV-HuM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pwO-I2-k0p"/>
+                            <constraint firstItem="xaO-KV-HuM" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="r55-Ge-K5q"/>
+                            <constraint firstItem="YFc-QX-Et3" firstAttribute="leading" secondItem="Kyw-6F-CPJ" secondAttribute="leading" constant="-10" id="t9A-3I-WZj"/>
+                            <constraint firstItem="E8y-n3-bUN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yxN-ei-Kx3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonBackground" destination="YFc-QX-Et3" id="XjI-1H-EdX"/>
+                        <outlet property="buttonText" destination="Kyw-6F-CPJ" id="lvi-5f-Qe9"/>
+                        <outlet property="diameterContraint" destination="bSL-In-OED" id="5o3-Fu-1J1"/>
+                        <outlet property="goalCircle" destination="3vu-sy-bVb" id="Zbu-KK-mq9"/>
+                        <outlet property="myView" destination="xaO-KV-HuM" id="lqh-xP-NCD"/>
+                        <outlet property="timeLabel" destination="CAk-9y-uCS" id="Hic-fx-Ucq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
+        </scene>
+    </scenes>
+</document>
