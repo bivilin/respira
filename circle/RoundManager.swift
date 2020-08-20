@@ -23,7 +23,7 @@ class RoundManager {
         self.currentSize = Double(minCircleSize)
     }
 
-    func updatesCircleSize(currentSize: Double, isInflating: Bool) -> Double {
+    func updatesCircleSize(isInflating: Bool) -> Double {
         var sizeRate: Double = 1
 
         if isInflating {
@@ -32,7 +32,7 @@ class RoundManager {
             sizeRate = 0.999
         }
 
-        let newSize = currentSize * sizeRate
+        let newSize = self.currentSize * sizeRate
         return newSize
     }
 
@@ -40,7 +40,7 @@ class RoundManager {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             var newSize: Double
 
-            newSize = self.updatesCircleSize(currentSize: self.currentSize, isInflating: self.isInflating)
+            newSize = self.updatesCircleSize(isInflating: self.isInflating)
             self.currentSize = newSize
 
             completion(newSize)
