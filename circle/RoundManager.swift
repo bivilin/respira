@@ -13,6 +13,7 @@ class RoundManager {
     var maxCircleSize: Int
     var currentSize: Double
     var timer : Timer?
+    var currentDurationInSeconds: Double?
 
     var isBreathing: Bool = false
     var isInflating: Bool = false
@@ -21,6 +22,7 @@ class RoundManager {
         self.minCircleSize = minCircleSize
         self.maxCircleSize = maxCircleSize
         self.currentSize = Double(minCircleSize)
+        currentDurationInSeconds = 0
     }
 
     func updatesCircleSize(isInflating: Bool) -> Double {
@@ -36,15 +38,37 @@ class RoundManager {
         return newSize
     }
 
-    func startRound(completion: @escaping (Double) -> Void) {
+    func startRound(completion: @escaping (Double, Double) -> Void) {
+        self.isBreathing = true
+        self.isInflating = true
+
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
-            var newSize: Double
 
-            newSize = self.updatesCircleSize(isInflating: self.isInflating)
-            self.currentSize = newSize
+            // Updates Time Passed
+            if let duration = self.currentDurationInSeconds {
+                self.currentDurationInSeconds = duration + 0.01
+            }
 
-            completion(newSize)
+            // Updates Current Size for Circle
+            self.currentSize = self.updatesCircleSize(isInflating: self.isInflating)
+
+            // Sends new values to UI
+            completion(self.currentSize, self.currentDurationInSeconds ?? 0)
 
         })
+    }
+
+    func finishInhaling() {
+        let inhaleDuration = self.currentDurationInSeconds
+        self.currentDurationInSeconds = 0
+        self.isInflating = false
+        print("Inspirou por \(inhaleDuration) segundos.")
+    }
+
+    func finishExhaling() {
+        let exhaleDuration = self.currentDurationInSeconds
+        self.currentDurationInSeconds = 0
+        self.isInflating = true
+        print("Expirou por \(exhaleDuration) segundos.")
     }
 }

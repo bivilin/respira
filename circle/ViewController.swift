@@ -27,6 +27,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var diameterContraint: NSLayoutConstraint!
+    @IBOutlet weak var durationLabel: UILabel!
 
     var roundManager: RoundManager?
 
@@ -52,24 +53,19 @@ class ViewController: UIViewController {
         guard let roundManager = self.roundManager else {return}
 
         if gesture.state == .began {
-
-            if roundManager.isBreathing {
-                // Future
-            } else {
-                // Starts breath session
-                roundManager.isBreathing = true
-                roundManager.startRound() { (newSize) in
-                    // Updates circle size
-                    self.diameterContraint.constant = CGFloat(newSize)
-                    self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
-                }
-            }
-
             // Hapict Feeddback
             impact.impactOccurred()
 
-            // Activates inhale
-            roundManager.isInflating = true
+            if roundManager.isBreathing {
+                // Activates inhale
+                roundManager.finishExhaling()
+            } else {
+                // Starts breath session
+                roundManager.startRound() { (newSize, currentDuration) in
+                    self.updateCircleSize(newSize: newSize)
+                    self.updateTimeDurationLabel(newDuration: currentDuration)
+                }
+            }
         }
 
         if gesture.state == .ended {
@@ -77,15 +73,27 @@ class ViewController: UIViewController {
             impact.impactOccurred()
 
             // Activates exhale
-            roundManager.isInflating = false
+            roundManager.finishInhaling()
         }
     }
 
+    func updateCircleSize(newSize: Double) {
+        let sizeInFloat = CGFloat(newSize)
+        self.diameterContraint.constant = sizeInFloat
+        self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
+    }
+
+    func updateTimeDurationLabel(newDuration: Double) {
+        let roundedDuration = Int(newDuration)
+        let stringDuration = String(roundedDuration)
+        self.durationLabel.text = stringDuration
+    }
 
     // Stops circle movement
     @IBAction func stopButton(_ sender: Any) {
         // Stops timer
         if let roundManager = self.roundManager {
+            roundManager.isBreathing = false
             roundManager.timer?.invalidate()
         }
     }

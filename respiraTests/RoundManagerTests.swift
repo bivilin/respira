@@ -21,38 +21,42 @@ class RoundManagerTests: XCTestCase {
         XCTAssertEqual(roundManager?.currentSize, 10)
     }
 
-    func testDecreasingCircle() {
+    func testDecreasingCircleTen() {
         let roundManager = RoundManager(minCircleSize: 10, maxCircleSize: 100)
-        let newSize = roundManager.updatesCircleSize(currentSize: roundManager.currentSize, isInflating: false)
+        let newSize = roundManager.updatesCircleSize(isInflating: false)
         XCTAssertEqual(newSize, 9.99)
     }
 
-//    func testIncreasingCircleTen() {
-//        let roundManager = RoundManager(minCircleSize: 10, maxCircleSize: 100)
-//        let newSize = roundManager.updatesCircleSize(currentSize: roundManager.currentSize, isInflating: true)
-//        XCTAssertEqual(newSize, 10.05)
-//        // Por que?
-//    }
-//
-//    func testIncreasingCircleFifty() {
-//        let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
-//        let newSize = roundManager.updatesCircleSize(currentSize: roundManager.currentSize, isInflating: true)
-//        XCTAssertEqual(newSize, 50.25)
-//        // Por que?
-//    }
-//
-//    func startRoundIncreasesCircle() {
-//        let expectation = self.expectation(description: "Getting newSize")
-//        var banana: Double = 0
-//
-//        let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
-//        roundManager.startRound { (newSize) in
-//            banana = newSize
-//            expectation.fulfill()
-//        }
-//
-//        waitForExpectations(timeout: 10, handler: nil)
-//
-//        XCTAssertTrue(banana >= 50.0)
-//    }
+    func testIncreasingCircleTen() {
+        let roundManager = RoundManager(minCircleSize: 10, maxCircleSize: 100)
+        let newSize = roundManager.updatesCircleSize(isInflating: true)
+        XCTAssertEqual(newSize, 10.05)
+        // Por que?
+    }
+
+    func testIncreasingCircleFifty() {
+        let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
+        let newSize = roundManager.updatesCircleSize(isInflating: true)
+        XCTAssertEqual(newSize, 50.25)
+        // Por que?
+    }
+
+    func testStartRoundIncreasesCircle() {
+        let expectation = self.expectation(description: "Getting First New Size")
+        var firstNewSize: Double = 0
+        var firstTime = true
+
+        let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
+        roundManager.startRound { (newSize) in
+            if firstTime {
+                firstNewSize = newSize
+                expectation.fulfill()
+                firstTime = false
+            }
+        }
+
+        waitForExpectations(timeout: 10, handler: nil)
+
+        XCTAssertTrue(firstNewSize >= 50.0)
+    }
 }
