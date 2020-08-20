@@ -19,21 +19,35 @@
 
 import UIKit
 
+//protocol SaveRespiration {
+//    func addRespirationToRound(respiration: Respiration)
+//}
+
 class ViewController: UIViewController {
 
-    @IBOutlet weak var myView: UIView!
+    @IBOutlet weak var circleView: UIView!
+
+    // Changing this value allows circle inflation/deflation
     @IBOutlet weak var diameterContraint: NSLayoutConstraint!
-    @IBOutlet weak var goalCircle: UIView!
+
+    // End Button
     @IBOutlet weak var buttonBackground: UIView!
     @IBOutlet weak var buttonText: UIButton!
 
-    // Timer
+    // Breathe Duration Label
     @IBOutlet weak var timeLabel: UILabel!
 
-    var timer : Timer!
+    var timer : Timer?
     var time: Double = 0.0
-    var outputRespiration: String = ""
-    var respirationRound: Int = 0
+
+    var isBreathing: Bool = false
+    var isInflating: Bool = false
+
+    var roundManager = RoundManager(minCircleSize: 30, maxCircleSize: 300)
+
+    // String to be outputed by the end of the Round
+//    var outputRespiration: String = ""
+    var respirationId: Int = 0
 
     // Hapict Feeddback
     let impact = UIImpactFeedbackGenerator()
@@ -41,13 +55,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.buttonBackground.layer.cornerRadius = self.buttonBackground.layer.cornerRadius / 1.5
-        buttonText.titleLabel?.text = "concluir"
+        // Visual design for button
+//        self.buttonBackground.layer.cornerRadius = self.buttonBackground.layer.cornerRadius / 1.5
 
+        //Button Text
+//        buttonText.titleLabel?.text = "concluir"
+
+        // Make view look like a circle
+        self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
+
+        // Idle Setup
         timeLabel.text = ""
-        // Transformando views em círculos
-        self.myView.layer.cornerRadius = self.diameterContraint.constant / 2
-        //self.goalCircle.layer.cornerRadius = 150
 
         // Gestures
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
@@ -55,52 +73,55 @@ class ViewController: UIViewController {
     }
 
     @objc func longPressed(gesture: UILongPressGestureRecognizer) {
+
         if gesture.state == .began {
-            // Hapict Feeddback
-            impact.impactOccurred()
-            // Turn off timer in case there's one currently running
-            if let timer = self.timer {
-                outputRespiration += "E: \(String(format: "%.0f", self.time)) sec "
-                timer.invalidate()
+
+            if self.isBreathing {
+                //saveRespiration()
+                time = 0
+            } else {
+                self.isBreathing = true
+                self.startRound(circleStarterSize: 30) { (newSize) in
+                    self.diameterContraint.constant = CGFloat(newSize)
+                    self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
+                }
             }
 
-            time = 0
-            respirationRound += 1
+            // Hapict Feeddback
+            impact.impactOccurred()
 
-            // Creates timer for inhale
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
-                self.time += 0.01
-                print("inhale")
-                //self.diameterContraint.constant = CGFloat(300 * self.time / 8)
-                self.diameterContraint.constant = self.diameterContraint.constant * 1.005
-                print(self.diameterContraint.constant)
-                self.myView.layer.cornerRadius = self.diameterContraint.constant / 2
-                self.timeLabel.text = String(format: "%.0f", self.time)
-            })
+            // Activates inhale
+            self.isInflating = true
         }
-        // Funciona só se o usuário tiver alcançado a meta de inspiração
+
         if gesture.state == .ended {
             // Hapict Feeddback
             impact.impactOccurred()
-            outputRespiration += "\n Respiração \(respirationRound) \n I: \(String(format: "%.0f", self.time)) sec | "
-            time = 0
-            self.timer.invalidate()
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
-                self.time += 0.01
-                print("exhale")
-                //self.diameterContraint.constant = CGFloat(300 - (300 - 30) / 8 * self.time)
-                self.diameterContraint.constant = self.diameterContraint.constant * 0.999
-                print(self.diameterContraint.constant)
-                self.myView.layer.cornerRadius = self.diameterContraint.constant / 2
-                self.timeLabel.text = String(format: "%.0f", self.time)
-            })
+
+            // Activates exhale
+            self.isInflating = false
         }
     }
+
+    func startRound(circleStarterSize: Double, completion: @escaping (Double) -> Void) {
+
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
+            let currentSize = Double(self.diameterContraint.constant)
+            var newSize: Double
+
+            newSize = self.roundManager.updatesCircleSize(currentSize: currentSize, isInflating: self.isInflating)
+
+            completion(newSize)
+        })
+    }
+
+
+
     @IBAction func stopButton(_ sender: Any) {
-        timer.invalidate()
-        print(outputRespiration)
-        let alert = UIAlertController(title: "Resumo da respiração", message: outputRespiration, preferredStyle: .alert)
-        self.present(alert, animated: true, completion:  nil)
+        timer?.invalidate()
+//        print(outputRespiration)
+//        let alert = UIAlertController(title: "Resumo da respiração", message: outputRespiration, preferredStyle: .alert)
+//        self.present(alert, animated: true, completion:  nil)
     }
 
 }

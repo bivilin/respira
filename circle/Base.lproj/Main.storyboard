@@ -15,14 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vu-sy-bVb">
-                                <rect key="frame" x="57" y="303" width="300" height="300"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Ulm-ni-KdY"/>
-                                    <constraint firstAttribute="width" secondItem="3vu-sy-bVb" secondAttribute="height" id="neX-2T-1GW"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-KV-HuM">
                                 <rect key="frame" x="192" y="438" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.75294117647058822" green="0.81960784313725488" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,11 +58,8 @@
                         <color key="backgroundColor" red="0.90588235294117647" green="0.95686274509803915" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="YFc-QX-Et3" firstAttribute="top" secondItem="Kyw-6F-CPJ" secondAttribute="top" id="0dY-xM-aML"/>
-                            <constraint firstItem="3vu-sy-bVb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="O60-XX-NVl"/>
-                            <constraint firstItem="3vu-sy-bVb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PgZ-cM-Y47"/>
                             <constraint firstItem="ypB-Ov-Dha" firstAttribute="centerX" secondItem="E8y-n3-bUN" secondAttribute="centerX" id="PhF-VU-Ghb"/>
                             <constraint firstItem="YFc-QX-Et3" firstAttribute="trailing" secondItem="Kyw-6F-CPJ" secondAttribute="trailing" constant="10" id="QNL-8s-EtP"/>
-                            <constraint firstItem="3vu-sy-bVb" firstAttribute="width" secondItem="3vu-sy-bVb" secondAttribute="height" id="QgW-bY-rrE"/>
                             <constraint firstItem="E8y-n3-bUN" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.3" id="U8J-XM-em5"/>
                             <constraint firstItem="YFc-QX-Et3" firstAttribute="centerY" secondItem="Kyw-6F-CPJ" secondAttribute="centerY" id="W2L-5U-tGf"/>
                             <constraint firstItem="ypB-Ov-Dha" firstAttribute="top" secondItem="E8y-n3-bUN" secondAttribute="bottom" constant="16" id="awb-AO-iT6"/>
@@ -88,9 +77,8 @@
                     <connections>
                         <outlet property="buttonBackground" destination="YFc-QX-Et3" id="XjI-1H-EdX"/>
                         <outlet property="buttonText" destination="Kyw-6F-CPJ" id="lvi-5f-Qe9"/>
+                        <outlet property="circleView" destination="xaO-KV-HuM" id="NcR-dk-LGc"/>
                         <outlet property="diameterContraint" destination="bSL-In-OED" id="5o3-Fu-1J1"/>
-                        <outlet property="goalCircle" destination="3vu-sy-bVb" id="Zbu-KK-mq9"/>
-                        <outlet property="myView" destination="xaO-KV-HuM" id="lqh-xP-NCD"/>
                         <outlet property="timeLabel" destination="CAk-9y-uCS" id="Hic-fx-Ucq"/>
                     </connections>
                 </viewController>
