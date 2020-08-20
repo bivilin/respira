@@ -40,9 +40,6 @@ class ViewController: UIViewController {
     var timer : Timer?
     var time: Double = 0.0
 
-    var isBreathing: Bool = false
-    var isInflating: Bool = false
-
     var roundManager = RoundManager(minCircleSize: 30, maxCircleSize: 300)
 
     // String to be outputed by the end of the Round
@@ -76,12 +73,12 @@ class ViewController: UIViewController {
 
         if gesture.state == .began {
 
-            if self.isBreathing {
+            if roundManager.isBreathing {
                 //saveRespiration()
                 time = 0
             } else {
-                self.isBreathing = true
-                self.startRound(circleStarterSize: 30) { (newSize) in
+                roundManager.isBreathing = true
+                roundManager.startRound() { (newSize) in
                     self.diameterContraint.constant = CGFloat(newSize)
                     self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
                 }
@@ -91,7 +88,7 @@ class ViewController: UIViewController {
             impact.impactOccurred()
 
             // Activates inhale
-            self.isInflating = true
+            roundManager.isInflating = true
         }
 
         if gesture.state == .ended {
@@ -99,22 +96,9 @@ class ViewController: UIViewController {
             impact.impactOccurred()
 
             // Activates exhale
-            self.isInflating = false
+            roundManager.isInflating = false
         }
     }
-
-    func startRound(circleStarterSize: Double, completion: @escaping (Double) -> Void) {
-
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
-            let currentSize = Double(self.diameterContraint.constant)
-            var newSize: Double
-
-            newSize = self.roundManager.updatesCircleSize(currentSize: currentSize, isInflating: self.isInflating)
-
-            completion(newSize)
-        })
-    }
-
 
 
     @IBAction func stopButton(_ sender: Any) {
