@@ -43,11 +43,11 @@ class RoundManagerTests: XCTestCase {
 
     func testStartRoundIncreasesCircle() {
         let expectation = self.expectation(description: "Getting First New Size")
-        var firstNewSize: Double = 0
+        var firstNewSize: Float = 0
         var firstTime = true
 
         let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
-        roundManager.startRound { (newSize) in
+        roundManager.startRound { (newSize, newDuration) in
             if firstTime {
                 firstNewSize = newSize
                 expectation.fulfill()
