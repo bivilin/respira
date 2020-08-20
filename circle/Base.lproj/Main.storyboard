@@ -23,7 +23,7 @@
                                     <constraint firstAttribute="width" constant="30" id="bSL-In-OED"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number of seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAk-9y-uCS">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number of seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAk-9y-uCS">
                                 <rect key="frame" x="126" y="443" width="162.5" height="20"/>
                                 <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,11 +75,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="buttonBackground" destination="YFc-QX-Et3" id="XjI-1H-EdX"/>
-                        <outlet property="buttonText" destination="Kyw-6F-CPJ" id="lvi-5f-Qe9"/>
                         <outlet property="circleView" destination="xaO-KV-HuM" id="NcR-dk-LGc"/>
                         <outlet property="diameterContraint" destination="bSL-In-OED" id="5o3-Fu-1J1"/>
-                        <outlet property="timeLabel" destination="CAk-9y-uCS" id="Hic-fx-Ucq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

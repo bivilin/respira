@@ -26,25 +26,9 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var circleView: UIView!
-
-    // Changing this value allows circle inflation/deflation
     @IBOutlet weak var diameterContraint: NSLayoutConstraint!
 
-    // End Button
-    @IBOutlet weak var buttonBackground: UIView!
-    @IBOutlet weak var buttonText: UIButton!
-
-    // Breathe Duration Label
-    @IBOutlet weak var timeLabel: UILabel!
-
-    var timer : Timer?
-    var time: Double = 0.0
-
-    var roundManager = RoundManager(minCircleSize: 30, maxCircleSize: 300)
-
-    // String to be outputed by the end of the Round
-//    var outputRespiration: String = ""
-    var respirationId: Int = 0
+    var roundManager: RoundManager?
 
     // Hapict Feeddback
     let impact = UIImpactFeedbackGenerator()
@@ -52,17 +36,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Visual design for button
-//        self.buttonBackground.layer.cornerRadius = self.buttonBackground.layer.cornerRadius / 1.5
-
-        //Button Text
-//        buttonText.titleLabel?.text = "concluir"
+        // Creates RoundManager
+        roundManager = RoundManager(minCircleSize: 30, maxCircleSize: 300)
 
         // Make view look like a circle
         self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
-
-        // Idle Setup
-        timeLabel.text = ""
 
         // Gestures
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
@@ -71,14 +49,17 @@ class ViewController: UIViewController {
 
     @objc func longPressed(gesture: UILongPressGestureRecognizer) {
 
+        guard let roundManager = self.roundManager else {return}
+
         if gesture.state == .began {
 
             if roundManager.isBreathing {
-                //saveRespiration()
-                time = 0
+                // Future
             } else {
+                // Starts breath session
                 roundManager.isBreathing = true
                 roundManager.startRound() { (newSize) in
+                    // Updates circle size
                     self.diameterContraint.constant = CGFloat(newSize)
                     self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
                 }
@@ -101,11 +82,12 @@ class ViewController: UIViewController {
     }
 
 
+    // Stops circle movement
     @IBAction func stopButton(_ sender: Any) {
-        timer?.invalidate()
-//        print(outputRespiration)
-//        let alert = UIAlertController(title: "Resumo da respiração", message: outputRespiration, preferredStyle: .alert)
-//        self.present(alert, animated: true, completion:  nil)
+        // Stops timer
+        if let roundManager = self.roundManager {
+            roundManager.timer?.invalidate()
+        }
     }
 
 }
