@@ -77,14 +77,14 @@ class ViewController: UIViewController {
         }
     }
 
-    func updateCircleSize(newSize: Float) {
-        let sizeInFloat = CGFloat(newSize)
+    func updateCircleSize(newSize: Decimal) {
+        let sizeInFloat = CGFloat(truncating: newSize as NSNumber)
         self.diameterContraint.constant = sizeInFloat
         self.circleView.layer.cornerRadius = self.diameterContraint.constant / 2
     }
 
-    func updateTimeDurationLabel(newDuration: Float) {
-        let roundedDuration = Int(newDuration)
+    func updateTimeDurationLabel(newDuration: Decimal) {
+        let roundedDuration = Int(truncating: newDuration as NSNumber)
         let stringDuration = String(roundedDuration)
         self.durationLabel.text = stringDuration
     }

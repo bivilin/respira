@@ -11,9 +11,9 @@ import Foundation
 class RoundManager {
     var minCircleSize: Int
     var maxCircleSize: Int
-    var currentSize: Float
+    var currentSize: Decimal
     var timer : Timer?
-    var currentDurationInSeconds: Float?
+    var currentDurationInSeconds: Decimal?
 
     var isBreathing: Bool = false
     var isInflating: Bool = false
@@ -21,12 +21,12 @@ class RoundManager {
     init(minCircleSize: Int, maxCircleSize: Int) {
         self.minCircleSize = minCircleSize
         self.maxCircleSize = maxCircleSize
-        self.currentSize = Float(minCircleSize)
+        self.currentSize = Decimal(minCircleSize)
         currentDurationInSeconds = 0
     }
 
-    func updatesCircleSize(isInflating: Bool) -> Float {
-        var sizeRate: Float = 1
+    func updatesCircleSize(isInflating: Bool) -> Decimal {
+        var sizeRate: Decimal = 1
 
         if isInflating {
             sizeRate = 1.005
@@ -38,7 +38,7 @@ class RoundManager {
         return newSize
     }
 
-    func startRound(completion: @escaping (Float, Float) -> Void) {
+    func startRound(completion: @escaping (Decimal, Decimal) -> Void) {
         self.isBreathing = true
         self.isInflating = true
 
@@ -56,6 +56,10 @@ class RoundManager {
             completion(self.currentSize, self.currentDurationInSeconds ?? 0)
 
         })
+    }
+
+    func finishRoud() {
+        self.timer?.invalidate()
     }
 
     func finishInhaling() {

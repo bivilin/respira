@@ -30,33 +30,43 @@ class RoundManagerTests: XCTestCase {
     func testIncreasingCircleTen() {
         let roundManager = RoundManager(minCircleSize: 10, maxCircleSize: 100)
         let newSize = roundManager.updatesCircleSize(isInflating: true)
-        XCTAssertEqual(newSize, 10.05)
-        // Por que?
+        XCTAssertEqual(Double(truncating: newSize as NSNumber),Double(10.05), accuracy:0.01)
+
     }
 
     func testIncreasingCircleFifty() {
         let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
         let newSize = roundManager.updatesCircleSize(isInflating: true)
-        XCTAssertEqual(newSize, 50.25)
-        // Por que?
+        XCTAssertEqual(Double(truncating: newSize as NSNumber), 50.25, accuracy:0.01)
     }
 
     func testStartRoundIncreasesCircle() {
         let expectation = self.expectation(description: "Getting First New Size")
-        var firstNewSize: Float = 0
-        var firstTime = true
+        var firstNewSize: Decimal = 0
 
-        let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
-        roundManager.startRound { (newSize, newDuration) in
-            if firstTime {
-                firstNewSize = newSize
-                expectation.fulfill()
-                firstTime = false
+        roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
+        roundManager?.startRound { (newSize, newDuration) in
+            self.roundManager?.finishRoud()
+            firstNewSize = newSize
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 10) { (error) in
+            if error != nil {
+                XCTFail("Erro: \(String(describing: error?.localizedDescription))")
             }
         }
 
-        waitForExpectations(timeout: 10, handler: nil)
-
         XCTAssertTrue(firstNewSize >= 50.0)
+    }
+
+    func testFinishRoundInvalidatesTimer() {
+        roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
+        roundManager?.startRound { (newSize, newDuration) in
+        }
+        self.roundManager?.finishRoud()
+        let timerValidation = roundManager?.timer?.isValid
+        XCTAssertEqual(timerValidation, false)
+
     }
 }
