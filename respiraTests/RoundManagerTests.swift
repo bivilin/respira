@@ -16,33 +16,33 @@ class RoundManagerTests: XCTestCase {
 
     func testInitWorking() {
         roundManager = RoundManager(minCircleSize: 10, maxCircleSize: 100)
-        XCTAssertEqual(roundManager?.minCircleSize, 10)
-        XCTAssertEqual(roundManager?.maxCircleSize, 100)
+        XCTAssertEqual(roundManager?.minViewSize, 10)
+        XCTAssertEqual(roundManager?.maxViewSize, 100)
         XCTAssertEqual(roundManager?.currentSize, 10)
     }
 
     func testDecreasingCircleTen() {
         let roundManager = RoundManager(minCircleSize: 10, maxCircleSize: 100)
-        let newSize = roundManager.updatesCircleSize(isInflating: false)
+        let newSize = roundManager.getNewViewSize(isInflating: false)
         XCTAssertEqual(newSize, 9.99)
     }
 
     func testIncreasingCircleTen() {
         let roundManager = RoundManager(minCircleSize: 10, maxCircleSize: 100)
-        let newSize = roundManager.updatesCircleSize(isInflating: true)
+        let newSize = roundManager.getNewViewSize(isInflating: true)
         XCTAssertEqual(Double(truncating: newSize as NSNumber),Double(10.05), accuracy:0.01)
 
     }
 
     func testIncreasingCircleFifty() {
         let roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
-        let newSize = roundManager.updatesCircleSize(isInflating: true)
+        let newSize = roundManager.getNewViewSize(isInflating: true)
         XCTAssertEqual(Double(truncating: newSize as NSNumber), 50.25, accuracy:0.01)
     }
 
     func testStartRoundIncreasesCircle() {
         let expectation = self.expectation(description: "Getting First New Size")
-        var firstNewSize: Decimal = 0
+        var firstNewSize: Float = 0
 
         roundManager = RoundManager(minCircleSize: 50, maxCircleSize: 100)
         roundManager?.startRound { (newSize, newDuration) in

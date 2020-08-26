@@ -8,25 +8,34 @@
 
 import Foundation
 
+protocol ViewSizeRenderer: class {
+    func updateViewSize(newSize: Float)
+    func resetViewSizeToMinimum(minimumSize: Float)
+    func updateTimeDurationLabel(newDuration: Float)
+}
+
 class RoundManager {
-    var minCircleSize: Int
-    var maxCircleSize: Int
-    var currentSize: Decimal
+    var minViewSize: Float
+    var maxViewSize: Float
+    var currentSize: Float
     var timer : Timer?
-    var currentDurationInSeconds: Decimal?
+    var currentDurationInSeconds: Float?
 
     var isBreathing: Bool = false
     var isInflating: Bool = false
 
-    init(minCircleSize: Int, maxCircleSize: Int) {
-        self.minCircleSize = minCircleSize
-        self.maxCircleSize = maxCircleSize
-        self.currentSize = Decimal(minCircleSize)
+    weak var viewSizeRenderer: ViewSizeRenderer?
+
+    init(minViewSize: Float, maxViewSize: Float, viewSizeRenderer: ViewSizeRenderer) {
+        self.minViewSize = minViewSize
+        self.maxViewSize = maxViewSize
+        self.currentSize = Float(minViewSize)
         currentDurationInSeconds = 0
+        self.viewSizeRenderer = viewSizeRenderer
     }
 
-    func updatesCircleSize(isInflating: Bool) -> Decimal {
-        var sizeRate: Decimal = 1
+    func getNewViewSize(isInflating: Bool) -> Float {
+        var sizeRate: Float = 1
 
         if isInflating {
             sizeRate = 1.005
@@ -38,7 +47,7 @@ class RoundManager {
         return newSize
     }
 
-    func startRound(completion: @escaping (Decimal, Decimal) -> Void) {
+    func startRound() {
         self.isBreathing = true
         self.isInflating = true
 
@@ -49,16 +58,20 @@ class RoundManager {
                 self.currentDurationInSeconds = duration + 0.01
             }
 
-            // Updates Current Size for Circle
-            self.currentSize = self.updatesCircleSize(isInflating: self.isInflating)
+            // Saves New View Size
+            self.currentSize = self.getNewViewSize(isInflating: self.isInflating)
 
-            // Sends new values to UI
-            completion(self.currentSize, self.currentDurationInSeconds ?? 0)
+            // Asks for UI to change the size
+            self.viewSizeRenderer?.updateViewSize(newSize: self.currentSize)
+            self.viewSizeRenderer?.updateTimeDurationLabel(newDuration: self.currentDurationInSeconds ?? 0)
 
         })
     }
 
     func finishRoud() {
+        self.viewSizeRenderer?.resetViewSizeToMinimum(minimumSize: self.minViewSize)
+        self.viewSizeRenderer?.updateTimeDurationLabel(newDuration: 0)
+        self.currentSize = self.minViewSize
         self.timer?.invalidate()
     }
 
@@ -66,13 +79,13 @@ class RoundManager {
         let inhaleDuration = self.currentDurationInSeconds
         self.currentDurationInSeconds = 0
         self.isInflating = false
-        print("Inspirou por \(inhaleDuration) segundos.")
+        print("Inspirou por \(String(describing: inhaleDuration)) segundos.")
     }
 
     func finishExhaling() {
         let exhaleDuration = self.currentDurationInSeconds
         self.currentDurationInSeconds = 0
         self.isInflating = true
-        print("Expirou por \(exhaleDuration) segundos.")
+        print("Expirou por \(String(describing: exhaleDuration)) segundos.")
     }
 }
