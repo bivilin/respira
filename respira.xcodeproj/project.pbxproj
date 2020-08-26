@@ -10,6 +10,8 @@
 		B309B5DD24EC7A7F000C971D /* RoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309B5DC24EC7A7F000C971D /* RoundManager.swift */; };
 		B309B5DF24EC8029000C971D /* Respiration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309B5DE24EC8029000C971D /* Respiration.swift */; };
 		B309B5E124EC804C000C971D /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309B5E024EC804C000C971D /* Round.swift */; };
+		B3C06E5024EEF02D0033B529 /* respiraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C06E4F24EEF02D0033B529 /* respiraTests.swift */; };
+		B3C06E5824EEF0650033B529 /* RoundManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C06E5724EEF0650033B529 /* RoundManagerTests.swift */; };
 		B3D52BF824773A5600458A8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D52BF724773A5600458A8A /* AppDelegate.swift */; };
 		B3D52BFA24773A5600458A8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D52BF924773A5600458A8A /* SceneDelegate.swift */; };
 		B3D52BFC24773A5600458A8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D52BFB24773A5600458A8A /* ViewController.swift */; };
@@ -19,10 +21,24 @@
 		B3D52C0724773A5B00458A8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D52C0524773A5B00458A8A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B3C06E5224EEF02D0033B529 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3D52BEC24773A5600458A8A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B3D52BF324773A5600458A8A;
+			remoteInfo = respira;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B309B5DC24EC7A7F000C971D /* RoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundManager.swift; sourceTree = "<group>"; };
 		B309B5DE24EC8029000C971D /* Respiration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Respiration.swift; sourceTree = "<group>"; };
 		B309B5E024EC804C000C971D /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
+		B3C06E4D24EEF02D0033B529 /* respiraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = respiraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3C06E4F24EEF02D0033B529 /* respiraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = respiraTests.swift; sourceTree = "<group>"; };
+		B3C06E5124EEF02D0033B529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3C06E5724EEF0650033B529 /* RoundManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundManagerTests.swift; sourceTree = "<group>"; };
 		B3D52BF424773A5600458A8A /* respira.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = respira.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D52BF724773A5600458A8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3D52BF924773A5600458A8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +51,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B3C06E4A24EEF02D0033B529 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B3D52BF124773A5600458A8A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,10 +77,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B3C06E4E24EEF02D0033B529 /* respiraTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3C06E4F24EEF02D0033B529 /* respiraTests.swift */,
+				B3C06E5124EEF02D0033B529 /* Info.plist */,
+				B3C06E5724EEF0650033B529 /* RoundManagerTests.swift */,
+			);
+			path = respiraTests;
+			sourceTree = "<group>";
+		};
 		B3D52BEB24773A5600458A8A = {
 			isa = PBXGroup;
 			children = (
 				B3D52BF624773A5600458A8A /* circle */,
+				B3C06E4E24EEF02D0033B529 /* respiraTests */,
 				B3D52BF524773A5600458A8A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D52BF424773A5600458A8A /* respira.app */,
+				B3C06E4D24EEF02D0033B529 /* respiraTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +125,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B3C06E4C24EEF02D0033B529 /* respiraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3C06E5424EEF02D0033B529 /* Build configuration list for PBXNativeTarget "respiraTests" */;
+			buildPhases = (
+				B3C06E4924EEF02D0033B529 /* Sources */,
+				B3C06E4A24EEF02D0033B529 /* Frameworks */,
+				B3C06E4B24EEF02D0033B529 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3C06E5324EEF02D0033B529 /* PBXTargetDependency */,
+			);
+			name = respiraTests;
+			productName = respiraTests;
+			productReference = B3C06E4D24EEF02D0033B529 /* respiraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B3D52BF324773A5600458A8A /* respira */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3D52C0B24773A5B00458A8A /* Build configuration list for PBXNativeTarget "respira" */;
@@ -113,10 +166,14 @@
 		B3D52BEC24773A5600458A8A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Beatriz Viseu Linhares";
 				TargetAttributes = {
+					B3C06E4C24EEF02D0033B529 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = B3D52BF324773A5600458A8A;
+					};
 					B3D52BF324773A5600458A8A = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
@@ -136,11 +193,19 @@
 			projectRoot = "";
 			targets = (
 				B3D52BF324773A5600458A8A /* respira */,
+				B3C06E4C24EEF02D0033B529 /* respiraTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B3C06E4B24EEF02D0033B529 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B3D52BF224773A5600458A8A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,6 +219,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B3C06E4924EEF02D0033B529 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3C06E5824EEF0650033B529 /* RoundManagerTests.swift in Sources */,
+				B3C06E5024EEF02D0033B529 /* respiraTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B3D52BF024773A5600458A8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -169,6 +243,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3C06E5324EEF02D0033B529 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B3D52BF324773A5600458A8A /* respira */;
+			targetProxy = B3C06E5224EEF02D0033B529 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B3D52BFD24773A5600458A8A /* Main.storyboard */ = {
@@ -190,6 +272,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B3C06E5524EEF02D0033B529 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2M7ZQ8AZ57;
+				INFOPLIST_FILE = respiraTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bivilin.respiraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/respira.app/respira";
+			};
+			name = Debug;
+		};
+		B3C06E5624EEF02D0033B529 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2M7ZQ8AZ57;
+				INFOPLIST_FILE = respiraTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bivilin.respiraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/respira.app/respira";
+			};
+			name = Release;
+		};
 		B3D52C0924773A5B00458A8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -343,6 +467,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B3C06E5424EEF02D0033B529 /* Build configuration list for PBXNativeTarget "respiraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3C06E5524EEF02D0033B529 /* Debug */,
+				B3C06E5624EEF02D0033B529 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B3D52BEF24773A5600458A8A /* Build configuration list for PBXProject "respira" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
