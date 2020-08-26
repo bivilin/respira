@@ -75,11 +75,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="buttonBackground" destination="YFc-QX-Et3" id="XjI-1H-EdX"/>
-                        <outlet property="buttonText" destination="Kyw-6F-CPJ" id="lvi-5f-Qe9"/>
                         <outlet property="circleView" destination="xaO-KV-HuM" id="NcR-dk-LGc"/>
                         <outlet property="diameterContraint" destination="bSL-In-OED" id="5o3-Fu-1J1"/>
-                        <outlet property="timeLabel" destination="CAk-9y-uCS" id="Hic-fx-Ucq"/>
+                        <outlet property="durationLabel" destination="CAk-9y-uCS" id="6F8-ze-Ros"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
