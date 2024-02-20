@@ -65,6 +65,7 @@ class ViewController: UIViewController {
             }
 
             time = 0
+            resetAnimation()
             respirationRound += 1
 
             // Creates timer for inhale
@@ -72,7 +73,9 @@ class ViewController: UIViewController {
                 self.time += 0.01
                 print("inhale")
                 //self.diameterContraint.constant = CGFloat(300 * self.time / 8)
-                self.diameterContraint.constant = self.diameterContraint.constant * 1.005
+                if self.diameterContraint.constant < 300 {
+                    self.diameterContraint.constant = self.diameterContraint.constant * 1.003
+                }
                 print(self.diameterContraint.constant)
                 self.myView.layer.cornerRadius = self.diameterContraint.constant / 2
                 self.timeLabel.text = String(format: "%.0f", self.time)
@@ -99,8 +102,23 @@ class ViewController: UIViewController {
     @IBAction func stopButton(_ sender: Any) {
         timer.invalidate()
         print(outputRespiration)
-        let alert = UIAlertController(title: "Resumo da respiração", message: outputRespiration, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Resumo da respiração", message: outputRespiration, preferredStyle: .actionSheet)
+        let okAction = UIAlertAction (title: "OK", style: .cancel, handler: nil)
+        alert.addAction(okAction)
         self.present(alert, animated: true, completion:  nil)
+        resetData()
+    }
+
+    private func resetData() {
+        time = 0.0
+        outputRespiration = ""
+        respirationRound = 0
+        resetAnimation()
+    }
+
+    private func resetAnimation() {
+        self.diameterContraint.constant = 30
+        self.myView.layer.cornerRadius = self.diameterContraint.constant / 2
     }
 
 }
